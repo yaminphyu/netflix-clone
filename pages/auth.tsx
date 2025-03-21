@@ -1,19 +1,19 @@
 import React, { useCallback, useState } from 'react';
 import Input from '@/components/Input';
-import { Auth } from '@/config';
+import { AuthTexts } from '@/config';
 
-export default function auth() {
+export default function Auth() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [variant, setVariant] = useState(Auth.LOGIN);
+  const [variant, setVariant] = useState(AuthTexts.LOGIN);
 
   const toggleVariant = useCallback(() => {
-    setVariant((currentVariant) => currentVariant === Auth.LOGIN ? Auth.REGISTER : Auth.LOGIN);
+    setVariant((currentVariant) => currentVariant === AuthTexts.LOGIN ? AuthTexts.REGISTER : AuthTexts.LOGIN);
   }, []);
 
-  const toggleTitle = () => variant === Auth.LOGIN ? 'Sign in' : 'Register';
-  const toggleButtonText = () => variant === Auth.LOGIN ? 'Login' : 'Sign up';
+  const toggleTitle = () => variant === AuthTexts.LOGIN ? 'Sign in' : 'Register';
+  const toggleButtonText = () => variant === AuthTexts.LOGIN ? 'Login' : 'Sign up';
 
   return (
     <div className='relative h-full bg-[url("/images/hero.jpg")] bg-no-repeat bg-center bg-fixed bg-cover'>
@@ -28,10 +28,10 @@ export default function auth() {
             </h2>
             <div className='flex flex-col gap-4'>
               {
-                variant === Auth.REGISTER && (
+                variant === AuthTexts.REGISTER && (
                   <Input
                     label='Username'
-                    onChange={(e:any) => setName(e.target.value)}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
                     id='name'
                     value={name}
                   />
@@ -39,14 +39,14 @@ export default function auth() {
               }
               <Input
                 label='Email'
-                onChange={(e:any) => setEmail(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
                 id='email'
                 type='email'
                 value={email}
               />
               <Input
                 label='Password'
-                onChange={(e:any) => setPassword(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
                 id='password'
                 type='password'
                 value={password}
@@ -57,14 +57,14 @@ export default function auth() {
             </button>
             <p className='text-neutral-500 mt-12'>
               {
-                variant === Auth.LOGIN ? 'First time using Netflix?' : 'Already have an account?'
+                variant === AuthTexts.LOGIN ? 'First time using Netflix?' : 'Already have an account?'
               }
               <span
                 onClick={toggleVariant}
                 className='text-white ml-1 hover:underline cursor-pointer'
               >
                 {
-                  variant === Auth.LOGIN ? 'Create an account' : 'Login'
+                  variant === AuthTexts.LOGIN ? 'Create an account' : 'Login'
                 }
               </span>
             </p>
